@@ -8,16 +8,12 @@ class Solution {
         // Complete this function
         Array.Sort(prices);
         int maxToys = 0;
-        for (int i = 1; i < prices.Length; i++)
+        while ((k > 0) && (maxToys <= prices.Length - 1))
         {
-            k = k - prices[i];
+            k = k - prices[maxToys];
             maxToys++;
-            if (k < 0)
-            {
-                return maxToys;
-            }
         }
-        return maxToys;
+        return (k < 0) ? --maxToys : maxToys; 
     }
 
     static void Main(String[] args) {
