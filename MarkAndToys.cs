@@ -1,3 +1,5 @@
+// https://www.hackerrank.com/challenges/mark-and-toys
+
 using System;
 using System.Collections.Generic;
 using System.IO;
