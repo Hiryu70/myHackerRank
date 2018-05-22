@@ -1,1 +1,52 @@
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+
+class Solution {
+    
+    static double Pearson(List<int> x, List<int> y)
+    {
+        int n = x.Count();
+        int xSum = x.Sum();
+        int ySum = y.Sum();
+        
+        int xySum = 0;
+        int x2Sum = 0;
+        int y2Sum = 0;
+        
+        for (int i = 0; i < n; i++)
+        {
+            xySum = xySum + x[i] * y[i];
+            x2Sum = x2Sum + x[i] * x[i];
+            y2Sum = y2Sum + y[i] * y[i];
+        }
+        
+        double result = (n * xySum - xSum * ySum) / (Math.Sqrt(n * x2Sum - xSum * xSum) * Math.Sqrt(n * y2Sum - ySum * ySum));
+        
+        return result;
+    }
+    
+    
+    static void Main(String[] args) {
+        int n = Convert.ToInt32(Console.ReadLine());
+        
+        List<int> m = new List<int>();
+        List<int> p = new List<int>();
+        List<int> c = new List<int>();
+
+        for (int i = 0; i < n; i++)
+        {
+            int[] r = Array.ConvertAll(Console.ReadLine().Split('\t'), rTemp => Convert.ToInt32(rTemp));
+            m.Add(r[0]);
+            p.Add(r[1]);
+            c.Add(r[2]);
+        }
+
+        Console.WriteLine(Math.Round(Pearson(m, p), 2));
+        Console.WriteLine(Math.Round(Pearson(p, c), 2));
+        Console.WriteLine(Math.Round(Pearson(c, m), 2));
+    }
+}
